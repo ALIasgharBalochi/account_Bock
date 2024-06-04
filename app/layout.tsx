@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
-
+import ReactQueryProvider from "./ReactQueryPrivider";
 const vazir = Vazirmatn({
   subsets: ["arabic", "latin"],
   display: "swap",
@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={vazir.className}>{children}</body>
+      <body className={vazir.className}>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </body>
     </html>
   );
 }
