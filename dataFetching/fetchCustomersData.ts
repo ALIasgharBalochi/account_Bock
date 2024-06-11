@@ -1,7 +1,6 @@
 import {useEffect} from 'react'
 import { useQuery } from 'react-query';
 import useStore,{Customer} from '@/store/store'
-import { Unkempt } from 'next/font/google';
 
 export const getAllCustomers = () => {
    const fetchCustomers = async (): Promise<Customer[]> => {

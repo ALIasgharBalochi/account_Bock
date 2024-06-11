@@ -1,9 +1,6 @@
 export const createCustomerFunc = async (data:FormData):Promise<any> => {
     const res = await fetch('http://localhost:9000/customers', {
         method: 'POST',
-        // headers: {
-        //     'Content-Type': 'application/json',
-        // },
         body:data 
     })
 
