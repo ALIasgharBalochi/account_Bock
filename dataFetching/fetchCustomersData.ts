@@ -1,8 +1,10 @@
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 import { useQuery } from 'react-query';
 import useStore,{Customer} from '@/store/store'
 
 export const getAllCustomers = () => {
+   const [Loading,setLoading] = useState(true);
+   const [CustomersData,setCustomersData] = useState<Customer[]>([])
    const fetchCustomers = async (): Promise<Customer[]> => {
     const response = await fetch("http://localhost:9000/customers");
    if (!response.ok) {
@@ -22,11 +24,14 @@ export const getAllCustomers = () => {
         setCustomers(data)
     }
   },[data,setCustomers])
-  
-  if (!isLoading) {
-    const orderedCustomers = customers?.slice().sort((a,b) => b.date?.localeCompare(a.date));
-    return orderedCustomers 
-  }  
 
-  return null
+  useEffect(() => {
+        const orderedCustomers: Customer[] = customers?.slice().sort((a,b) => b.date?.localeCompare(a.date));
+        setCustomersData(orderedCustomers)
+        setLoading(false)
+  }, [customers])
+  
+    
+    const CustomersDataPachaged = {isLoading: Loading,Customers: CustomersData}
+    return CustomersDataPachaged 
 }

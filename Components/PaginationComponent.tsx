@@ -4,6 +4,11 @@ import ReactPaginate from "react-paginate";
 import { getAllCustomers } from "@/dataFetching/fetchCustomersData";
 import Body from "./Body";
 import { Customer } from "@/store/store";
+
+type MyData = {
+  isLoading: boolean;
+  Customers: Customer[];
+};
 const PaginationComponent = ({
   CustomerPerPage,
 }: {
@@ -13,7 +18,8 @@ const PaginationComponent = ({
   const [loading, setLoading] = useState(true);
   const [CustomerOffset, setCustomerOffset] = useState(0);
 
-  const Customers: Customer[] | null = getAllCustomers();
+  const mydata: MyData = getAllCustomers();
+  const { isLoading, Customers } = mydata;
 
   const endOffset = CustomerOffset + CustomerPerPage;
 
@@ -36,13 +42,9 @@ const PaginationComponent = ({
   };
 
   useEffect(() => {
-    if (Customers) {
-      setCustomerPagenated(Customers);
-      setLoading(false);
-    } else {
-      setLoading(true);
-    }
-  }, [Customers]);
+    setCustomerPagenated(Customers);
+    setLoading(false);
+  }, [isLoading, Customers]);
 
   return (
     <>
