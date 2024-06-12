@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 import { createCustomerFunc } from "@/dataFetching/createCustomer";
 import { toast } from "react-toastify";
-import { redirect } from "next/navigation";
 export default function createCustomer() {
+  const router = useRouter();
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [photo, setPhoto] = useState<File | null>();
@@ -17,6 +18,7 @@ export default function createCustomer() {
       toast.success("مشتری با موفقیت ساخته شد ", {
         position: "top-right",
       });
+      router.push("/");
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {
