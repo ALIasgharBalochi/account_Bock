@@ -1,7 +1,12 @@
 import CustomerComponent from "./CustomerComponents/CustomerComponent";
 import NavBar from "./Navbar/Navbar";
 import SearchComponent from "./Search/SearchComponent";
-const Body: React.FC = () => {
+import { Customer } from "@/store/store";
+type Props = {
+  Customers: Customer[];
+  loading: boolean;
+};
+const Body: React.FC<Props> = ({ Customers, loading }) => {
   return (
     <>
       <NavBar />
@@ -10,7 +15,7 @@ const Body: React.FC = () => {
           <SearchComponent />
         </div>
         <div className=" w-full">
-          <CustomerComponent />
+          <CustomerComponent Customers={Customers} loading={loading} />
         </div>
       </div>
     </>

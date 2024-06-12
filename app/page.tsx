@@ -1,5 +1,7 @@
 "use client";
-import Body from "@/Components/Body";
+
+import PaginationComponent from "@/Components/PaginationComponent";
+
 export default function Home() {
-  return <Body />;
+  return <PaginationComponent CustomerPerPage={6} />;
 }
