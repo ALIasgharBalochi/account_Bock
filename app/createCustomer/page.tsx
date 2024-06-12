@@ -3,6 +3,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useMutation } from "react-query";
 import { createCustomerFunc } from "@/dataFetching/createCustomer";
+import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 export default function createCustomer() {
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
@@ -12,6 +14,9 @@ export default function createCustomer() {
   const mutation = useMutation(createCustomerFunc, {
     onSuccess: (data) => {
       console.log(" Customer created:", data);
+      toast.success("مشتری با موفقیت ساخته شد ", {
+        position: "top-right",
+      });
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {
