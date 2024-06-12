@@ -6,6 +6,7 @@ export interface Customer {
   phone: number;
   photo?:string;
   totalDebt:number
+  date: string 
 }
 
 interface Debt {
