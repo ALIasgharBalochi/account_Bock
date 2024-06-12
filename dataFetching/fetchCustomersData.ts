@@ -24,7 +24,8 @@ export const getAllCustomers = () => {
   },[data,setCustomers])
   
   if (!isLoading) {
-    return customers
+    const orderedCustomers = customers?.slice().sort((a,b) => b.date?.localeCompare(a.date));
+    return orderedCustomers 
   }  
 
   return null
