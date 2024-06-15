@@ -24,13 +24,17 @@ interface Debt {
 interface StoreState {
   customers: Customer[];
   setCustomers: (customers: Customer[]) => void;
+  getCustomerById: (customerId:number) => Customer | undefined
   debts: Debt[];
   setDebt: (debts: Debt[]) => void
 }
 
-const useStore = create<StoreState>(set => ({
+const useStore = create<StoreState>((set,get)=> ({
   customers: [],
   setCustomers: (customers) => set({ customers }),
+  getCustomerById: (customerId) =>{
+     return get().customers.find((customer:Customer) => customer._id === customerId) 
+  },
   debts:[],
   setDebt: (debts) => set({debts})
 }));
