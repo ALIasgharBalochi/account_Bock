@@ -11,7 +11,7 @@ const CustomerCardContainer: React.FC<Props> = ({ data }) => {
       <div className="flex flex-col items-center pb-10">
         <CustomerCardImg data={data} />
         <CustomerCardDetails data={data} />
-        <CustomerCardAction />
+        <CustomerCardAction customerId={data._id} />
       </div>
     </div>
   );
