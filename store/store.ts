@@ -1,7 +1,7 @@
 import create from 'zustand';
 
 export interface Customer {
-  id: number;
+  _id: number;
   name: string;
   phone: number;
   photo?:string;
