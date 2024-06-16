@@ -1,37 +1,35 @@
-import {useEffect,useState} from 'react'
 import { useQuery } from 'react-query';
-import useStore,{Customer} from '@/store/store'
+import { Customer } from '@/store/store';
+const URL:string = 'http://localhost:9000'
 
-export const getAllCustomers = () => {
-   const [Loading,setLoading] = useState(true);
-   const [CustomersData,setCustomersData] = useState<Customer[]>([])
-   const fetchCustomers = async (): Promise<Customer[]> => {
-    const response = await fetch("http://localhost:9000/customers");
-   if (!response.ok) {
-     throw new Error("Network response was not ok");
-   }
-   const data = await response.json();
-   return data;
-  };
-
-  const setCustomers = useStore((set) => set.setCustomers)
-  const customers:Customer[] = useStore((set) => set.customers)
-
-  const {data,error,isLoading} = useQuery<Customer[]>('customers',fetchCustomers)
-
-  useEffect(() => {
-    if(data) {
-        setCustomers(data)
-    }
-  },[data,setCustomers])
-
-  useEffect(() => {
-        const orderedCustomers: Customer[] = customers?.slice().sort((a,b) => b.date?.localeCompare(a.date));
-        setCustomersData(orderedCustomers)
-        setLoading(false)
-  }, [customers])
+// getAll customer 
+export const fetchCustomers = async () => {
+  const res = await fetch(`${URL}/customers`)
   
-    
-    const CustomersDataPachaged = {isLoading: Loading,Customers: CustomersData}
-    return CustomersDataPachaged 
+  if (!res.ok) {
+    throw new Error('fetchCustomers:failed fetch customers')
+  }
+ 
+  const data = res.json()
+  return data
+}
+
+export const useFetchCustomers = () => {
+  return useQuery('customers',fetchCustomers)
+}
+
+// gerCustomer by id
+export const fetchCustomerById = async (id:number) => {
+  const res = await fetch(`${URL}/customer/${id}`)
+
+  if (!res.ok) {
+    throw new Error('fetchCustomerById:failed to fetch customer')
+  }
+
+   return res.json()
+}
+
+// create useFetchCustomer by id
+export const useFetchCustomerById = (id:number) => {
+  return useQuery(['customer',id], () => fetchCustomerById(id))
 }
