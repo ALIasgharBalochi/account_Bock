@@ -21,8 +21,10 @@ const CustomerComponent: React.FC<Props> = ({
           {query.text.length > 0 ? (
             searchedCustomers.length > 0 ? (
               <div className=" w-full items-center grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-1 p-5">
-                {searchedCustomers?.map((customer: Customer) => (
-                  <CustomerCardContainer data={customer} />
+                {searchedCustomers?.map((customer: Customer, index) => (
+                  <div key={index}>
+                    <CustomerCardContainer data={customer} />
+                  </div>
                 ))}
               </div>
             ) : (
@@ -30,8 +32,10 @@ const CustomerComponent: React.FC<Props> = ({
             )
           ) : (
             <div className=" w-full items-center grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-1 p-5">
-              {Customers?.map((customer: Customer) => (
-                <CustomerCardContainer data={customer} />
+              {Customers?.map((customer: Customer, index) => (
+                <div key={index}>
+                  <CustomerCardContainer data={customer} />
+                </div>
               ))}
             </div>
           )}
