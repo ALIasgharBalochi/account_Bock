@@ -1,4 +1,5 @@
 import create from 'zustand';
+// import { persist } from 'zustand/middleware';
 
 export interface Customer {
   _id: number;
@@ -9,8 +10,8 @@ export interface Customer {
   date: string 
 }
 
-interface Debt {
-    customer: string;
+export interface Debt {
+    customer: Customer;
     itemName:string;
     number:number;
     unit:string;
