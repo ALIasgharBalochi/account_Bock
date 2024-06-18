@@ -5,9 +5,11 @@ type Props = {
 };
 const AccountInformation: React.FC<Props> = ({ customer }) => {
   return (
-    <div>
-      <p>last payment: $0 , 000,00,00</p>
-      <p>total account: {customer.totalDebt}</p>
+    <div className=" flex justify-start">
+      <div className=" text-end">
+        <p>0$ 00,00,00:مبلغ و تاریخ اخرین پرداختی </p>
+        <p> {customer.totalDebt}:مجموع کل حساب</p>
+      </div>
     </div>
   );
 };
