@@ -14,7 +14,6 @@ export default function createCustomer() {
 
   const mutation = useMutation(createCustomerFunc, {
     onSuccess: (data) => {
-      console.log(" Customer created:", data);
       toast.success("مشتری با موفقیت ساخته شد ", {
         position: "top-right",
       });
