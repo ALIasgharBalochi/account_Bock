@@ -1,5 +1,6 @@
 import { Customer, Debt } from "@/store/store";
 import CustomerHeader from "./CustomerHeader/CustomerHeader";
+import CustomerBody from "./CustomerBody/CustomerBody";
 
 type Props = {
   customer: Customer;
@@ -9,6 +10,7 @@ const CustomerContainerPage: React.FC<Props> = ({ customer, debts }) => {
   return (
     <div className=" h-screen">
       <CustomerHeader customer={customer} />
+      <CustomerBody Debts={debts} />
     </div>
   );
 };
