@@ -17,7 +17,7 @@ export interface Debt {
     unit:string;
     part:number;
     byWhom:string;
-    date: Date;
+    date: string;
     discount: string;
     itemPrice: number
 }
