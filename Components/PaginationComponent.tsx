@@ -52,7 +52,7 @@ const PaginationComponent = ({
     <>
       <Body Customers={currentBlogs} loading={loading} />
       <ReactPaginate
-        containerClassName="flex justify-center items-center mt-8 mb-4"
+        containerClassName="flex justify-center items-center mt-[7rem] mb-4"
         pageClassName="block border border-solid border-liteGray w-10 h-10 flex items-center justify-center rounded-full mr-2 text-slate-800"
         activeClassName="bg-slate-400 text-light hover:bg-slate-500"
         breakLabel="..."
