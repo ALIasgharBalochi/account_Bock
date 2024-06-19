@@ -46,7 +46,7 @@ const DebtsTable: React.FC<Props> = ({ Debts }) => {
           </tbody>
         </table>
       ) : (
-        <NotFound text="این مشتری هنوز چیزی به نسیه نبرده " />
+        <NotFound text="این مشتری هنوز چیزی به نسیه نبرده " height="full" />
       )}
     </div>
   );
