@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import _ from "lodash";
 import CustomerComponent from "./CustomerComponents/CustomerComponent";
 import NavBar from "./Navbar/Navbar";
 import SearchComponent from "./Search/SearchComponent";
-import { Customer } from "@/store/store";
-import { getAllCustomers } from "@/dataFetching/fetchCustomersData";
+import useStore, { Customer } from "@/store/store";
+import { useFetchCustomers } from "@/dataFetching/fetchCustomersData";
 type Props = {
   Customers: Customer[];
   loading: boolean;
@@ -14,8 +14,13 @@ const Body: React.FC<Props> = ({ Customers, loading }) => {
   const [query, setQuery] = useState<{ text: string }>({ text: "" });
   const [serchedCustomers, setSearchedCustoemr] = useState<Customer[]>([]);
 
-  const fetchCustomers = getAllCustomers();
-  const { Customers: customers } = fetchCustomers;
+  const { data: customers, isLoading, error } = useFetchCustomers();
+  const setCustomers = useStore((set) => set.setCustomers);
+  useEffect(() => {
+    if (customers) {
+      setCustomers(customers);
+    }
+  }, []);
 
   const searched: (event: any) => void = (event: any): void => {
     setQuery({ ...query, text: event.target.value });

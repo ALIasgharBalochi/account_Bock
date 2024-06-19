@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import { getAllCustomers } from "@/dataFetching/fetchCustomersData";
+import { useFetchCustomers } from "@/dataFetching/fetchCustomersData";
 import Body from "./Body";
 import { Customer } from "@/store/store";
 
@@ -18,8 +18,10 @@ const PaginationComponent = ({
   const [loading, setLoading] = useState(true);
   const [CustomerOffset, setCustomerOffset] = useState(0);
 
-  const mydata: MyData = getAllCustomers();
-  const { isLoading, Customers } = mydata;
+  const { data, isLoading, error } = useFetchCustomers();
+  const customers: Customer[] = data
+    ?.slice()
+    .sort((a: Customer, b: Customer) => b.date?.localeCompare(a.date));
 
   const endOffset = CustomerOffset + CustomerPerPage;
 
@@ -42,9 +44,9 @@ const PaginationComponent = ({
   };
 
   useEffect(() => {
-    setCustomerPagenated(Customers);
+    setCustomerPagenated(customers);
     setLoading(false);
-  }, [isLoading, Customers]);
+  }, [isLoading, data]);
 
   return (
     <>
