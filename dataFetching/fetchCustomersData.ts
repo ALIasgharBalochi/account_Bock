@@ -32,4 +32,17 @@ export const fetchCustomerById = async (id:number) => {
 // create useFetchCustomer by id
 export const useFetchCustomerById = (id:number) => {
   return useQuery(['customer',id], () => fetchCustomerById(id))
+} 
+
+// delete customer 
+export const deleteCustomer = async (customerId:number) => {
+   const res = await fetch(`http://localhost:9000/customer/${customerId}`,{
+    method: 'DELETE'
+   })
+
+   if (!res.ok) {
+     throw new Error(" customer not found")
+   }
+
+   return res.json()
 }
