@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface ModalProps {
@@ -30,6 +31,8 @@ const Modal: React.FC<ModalProps> = ({
   const [discount, setDiscount] = useState<string>("");
   const [itemPrice, setItemPrice] = useState<number | string>("");
 
+  const router = useRouter();
+
   const handleSubmit = () => {
     onSubmit({
       customer: customerId,
@@ -42,6 +45,7 @@ const Modal: React.FC<ModalProps> = ({
       itemPrice: Number(itemPrice),
     });
     onClose();
+    router.refresh();
   };
 
   if (!isOpen) return null;
