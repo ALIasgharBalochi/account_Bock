@@ -1,6 +1,7 @@
 import { Customer } from "@/store/store";
 import { deleteCustomer } from "@/dataFetching/fetchCustomersData";
-import { useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "react-query";
+import useStore from "@/store/store";
 type Props = {
   customer: Customer;
   isOpen: boolean;
@@ -12,16 +13,15 @@ const DeleteCustomerModal: React.FC<Props> = ({
   onClose,
   customer,
 }) => {
-  const router = useRouter();
-  const handleDeleteCustoemr = async () => {
-    try {
-      await deleteCustomer(customer._id);
+  const queryClient = useQueryClient();
+  const { removeCustomer } = useStore();
+  const mutation = useMutation(deleteCustomer, {
+    onSuccess: (_, customerId) => {
+      queryClient.invalidateQueries("customers");
+      removeCustomer(customerId);
       onClose();
-      router.refresh();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    },
+  });
 
   if (!isOpen) return null;
   return (
@@ -52,7 +52,7 @@ const DeleteCustomerModal: React.FC<Props> = ({
               </button>
               <button
                 className=" px-3 py-2 mx-2 rounded-md border border-blue-500 text-gray-200"
-                onClick={handleDeleteCustoemr}
+                onClick={() => mutation.mutate(customer._id)}
               >
                 حذف {customer.name}
               </button>
