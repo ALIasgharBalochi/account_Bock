@@ -1,5 +1,6 @@
 import { Customer } from "@/store/store";
 import { deleteCustomer } from "@/dataFetching/fetchCustomersData";
+import { useRouter } from "next/navigation";
 type Props = {
   customer: Customer;
   isOpen: boolean;
@@ -11,10 +12,12 @@ const DeleteCustomerModal: React.FC<Props> = ({
   onClose,
   customer,
 }) => {
+  const router = useRouter();
   const handleDeleteCustoemr = async () => {
     try {
       await deleteCustomer(customer._id);
       onClose();
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
