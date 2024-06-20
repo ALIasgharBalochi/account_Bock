@@ -28,16 +28,22 @@ const CustomerComponent: React.FC<Props> = ({
                 ))}
               </div>
             ) : (
-              <NotFound text="مشتری پیدا نشد " />
+              <NotFound text="مشتری پیدا نشد " height="screen" />
             )
           ) : (
-            <div className=" w-full items-center grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-1 p-5">
-              {Customers?.map((customer: Customer, index) => (
-                <div key={index}>
-                  <CustomerCardContainer data={customer} />
+            <>
+              {Customers?.length > 0 ? (
+                <div className=" w-full items-center grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-1 p-5">
+                  {Customers?.map((customer: Customer, index) => (
+                    <div key={index}>
+                      <CustomerCardContainer data={customer} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              ) : (
+                <NotFound text="هنوز مشتری وجود ندارد" height="screen" />
+              )}
+            </>
           )}
         </>
       ) : (
