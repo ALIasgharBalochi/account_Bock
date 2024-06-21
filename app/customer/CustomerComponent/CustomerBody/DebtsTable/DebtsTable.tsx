@@ -1,10 +1,17 @@
 import NotFound from "@/app/not-found";
 import { Debt } from "@/store/store";
+import { Dispatch, SetStateAction } from "react";
 
 type Props = {
   Debts: Debt[];
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setDeletedDebt: Dispatch<SetStateAction<Debt>>;
 };
-const DebtsTable: React.FC<Props> = ({ Debts }) => {
+const DebtsTable: React.FC<Props> = ({ Debts, setIsOpen, setDeletedDebt }) => {
+  const handleDeleteDebt = (debt: Debt) => {
+    setDeletedDebt(debt);
+    setIsOpen(true);
+  };
   return (
     <div className=" flex w-[90%] justify-center max-h-[25rem] overflow-y-auto">
       {Debts.length > 0 ? (
@@ -27,7 +34,8 @@ const DebtsTable: React.FC<Props> = ({ Debts }) => {
             {Debts.map((debt: Debt, index) => (
               <tr
                 key={index}
-                className=" bg-gray-800 border-solid border-y-2 border-gray-500 hover:bg-gray-600 hover:text-gray-800 hover:font-bold"
+                onClick={() => handleDeleteDebt(debt)}
+                className=" bg-gray-800 border-solid hover:cursor-pointer border-y-2 border-gray-500 hover:bg-gray-600 hover:text-gray-800 hover:font-bold"
               >
                 <td className=" min-h-3 overflow-x-auto">{index + 1}</td>
                 <td className=" overflow-x-auto">{debt.itemName}</td>
