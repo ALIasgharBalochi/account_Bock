@@ -4,26 +4,27 @@ import { useFetchCustomerById } from "@/dataFetching/fetchCustomersData";
 import Loading from "@/app/loading";
 import { Customer, Debt } from "@/store/store";
 import CustomerContainerPage from "../CustomerComponent/CustomerContainerPage";
-import { useFetchDebts, createDebt } from "@/dataFetching/fetchDebtsData";
+import { createDebt, fetchDebts } from "@/dataFetching/fetchDebtsData";
 import AddDebtButton from "../AddDebtButton";
 import Modal from "../Modal";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
-import Router from "next/router";
+
 export default function customer({ params }: { params: { slug: number } }) {
   const customerId = params.slug;
 
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [customerDebts, setCustomerDebts] = useState<Debt[] | []>([]);
+  const [debts, setDebt] = useState<Debt[] | []>([]);
 
   //  open Modal
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { data, isLoading, error } = useFetchCustomerById(customerId);
-  const { data: debts, isLoading: loadingDebts } = useFetchDebts();
+  console.log("log debts:", debts);
 
   const mutation = useMutation(createDebt, {
-    onSuccess: () => {
+    onSuccess: (debt: Debt) => {
       toast.success(" کالا با موفقیت ساخته شد ", {
         position: "top-right",
       });
@@ -35,20 +36,19 @@ export default function customer({ params }: { params: { slug: number } }) {
     },
   });
 
+  useEffect(() => {
+    const fetch = async () => {
+      const d = await fetchDebts();
+      return setDebt(d);
+    };
+
+    fetch();
+  }, []);
   const onClose = (): void => {
     setIsOpen(false);
   };
 
-  const onSubmit = (data: {
-    customer: number;
-    itemName: string;
-    number: number;
-    unit: string;
-    part: number;
-    discount: string;
-    itemPrice: number;
-    byWhom: string;
-  }) => {
+  const onSubmit = (data: Debt) => {
     mutation.mutate(data);
   };
   useEffect(() => {
@@ -59,12 +59,15 @@ export default function customer({ params }: { params: { slug: number } }) {
 
   useEffect(() => {
     if (debts) {
-      const d = debts.filter((debt: Debt) => {
+      const d: Debt[] = debts.filter((debt: Debt) => {
         return debt.customer._id === customerId;
       });
-      setCustomerDebts(d);
+      const orderDebts = d
+        ?.slice()
+        .sort((a: Debt, b: Debt) => b.date.localeCompare(a.date));
+      setCustomerDebts(orderDebts);
     }
-  }, [loadingDebts, debts]);
+  }, [debts]);
 
   return (
     <>
@@ -78,7 +81,7 @@ export default function customer({ params }: { params: { slug: number } }) {
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={onSubmit}
-        customerId={customerId}
+        customer={customer}
       />
     </>
   );
