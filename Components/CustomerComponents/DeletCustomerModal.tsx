@@ -2,6 +2,7 @@ import { Customer } from "@/store/store";
 import { deleteCustomer } from "@/dataFetching/fetchCustomersData";
 import { useMutation, useQueryClient } from "react-query";
 import useStore from "@/store/store";
+import { toast } from "react-toastify";
 type Props = {
   customer: Customer;
   isOpen: boolean;
@@ -19,6 +20,9 @@ const DeleteCustomerModal: React.FC<Props> = ({
     onSuccess: (_, customerId) => {
       queryClient.invalidateQueries("customers");
       removeCustomer(customerId);
+      toast.info("مشتری با موفقیت حذف شد", {
+        position: "top-right",
+      });
       onClose();
     },
   });
