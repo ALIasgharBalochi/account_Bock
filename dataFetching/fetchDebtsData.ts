@@ -34,3 +34,16 @@ export const createDebt = async (debt:Debt) => {
     const d = res.json()
     return d
 }
+
+// delete debt
+export const deleteDebt = async (debtId:number) => {
+   const res = await fetch(`http://localhost:9000/debt/${debtId}`,{
+    method: 'DELETE'
+   })
+
+   if (!res.ok) {
+     throw new Error(" failed to delete debt")
+   }
+
+   return res.json()
+}
