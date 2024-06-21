@@ -1,4 +1,5 @@
 import { Customer } from "@/store/store";
+import avatar from "@/public/avatar.png";
 import Image from "next/image";
 type Props = {
   customer: Customer;
@@ -15,7 +16,7 @@ const PersonalityInformation: React.FC<Props> = ({ customer }) => {
           src={
             customer.photo
               ? `http://localhost:9000/images/${customer.photo}`
-              : "hello"
+              : avatar
           }
           className=" rounded-full max-h-[10rem]"
           width={150}
