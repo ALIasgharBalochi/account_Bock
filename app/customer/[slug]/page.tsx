@@ -21,7 +21,6 @@ export default function customer({ params }: { params: { slug: number } }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { data, isLoading, error } = useFetchCustomerById(customerId);
-  console.log("log debts:", debts);
 
   const mutation = useMutation(createDebt, {
     onSuccess: (debt: Debt) => {

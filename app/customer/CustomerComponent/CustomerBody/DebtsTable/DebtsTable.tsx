@@ -6,9 +6,9 @@ type Props = {
 };
 const DebtsTable: React.FC<Props> = ({ Debts }) => {
   return (
-    <div className=" flex justify-center">
+    <div className=" flex w-[90%] justify-center max-h-[25rem] overflow-y-auto">
       {Debts.length > 0 ? (
-        <table className=" table-fixed w-[90%] overflow-x-scroll" dir="rtl">
+        <table className=" table-fixed w-full overflow-x-scroll" dir="rtl">
           <thead className=" bg-gray-500">
             <tr>
               <th className=" py-3 text-start">ردیف</th>
