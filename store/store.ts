@@ -11,6 +11,7 @@ export interface Customer {
 }
 
 export interface Debt {
+    _id: number
     customer: Customer;
     itemName:string;
     number:number;
