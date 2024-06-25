@@ -5,7 +5,7 @@ type Props = {
 };
 const AddDebtButton: React.FC<Props> = ({ setOpneModal }) => {
   return (
-    <div className=" p-3 bg-blue-600 rounded-md bottom-3 right-3 w-10 h-10 flex justify-center items-center absolute">
+    <div className=" p-3 bg-blue-600 rounded-md w-10 h-10 flex justify-center items-center absolute">
       <button
         data-ripple-light="true"
         data-dialog-target="dialog"
