@@ -1,7 +1,7 @@
 import NotFound from "@/app/not-found";
 import { Debt } from "@/store/store";
 import { Dispatch, SetStateAction } from "react";
-
+import ShowTime from "@/Components/ShowTime";
 type Props = {
   Debts: Debt[];
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -44,7 +44,9 @@ const DebtsTable: React.FC<Props> = ({ Debts, setIsOpen, setDeletedDebt }) => {
                 <td>{debt.part}</td>
                 <td>{debt.itemPrice}</td>
                 <td>{debt.byWhom}</td>
-                <td>{debt.date}</td>
+                <td>
+                  <ShowTime timestamp={debt.date} />
+                </td>
                 <td>{debt.discount ? debt.discount : <h1>-</h1>}</td>
                 <td className=" overflow-x-auto">{debt.itemPrice}0</td>
               </tr>
