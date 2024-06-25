@@ -13,9 +13,9 @@ const DebtsTable: React.FC<Props> = ({ Debts, setIsOpen, setDeletedDebt }) => {
     setIsOpen(true);
   };
   return (
-    <div className=" flex w-[90%] justify-center max-h-[25rem] overflow-y-auto">
+    <div className=" flex w-[90%] justify-center max-h-[25rem] overflow-y-auto overflow-x-auto">
       {Debts.length > 0 ? (
-        <table className=" table-fixed w-full overflow-x-scroll" dir="rtl">
+        <table className=" table-auto w-full overflow-x-scroll" dir="rtl">
           <thead className=" bg-gray-500">
             <tr>
               <th className=" py-3 text-start">ردیف</th>
@@ -37,17 +37,15 @@ const DebtsTable: React.FC<Props> = ({ Debts, setIsOpen, setDeletedDebt }) => {
                 onClick={() => handleDeleteDebt(debt)}
                 className=" bg-gray-800 border-solid hover:cursor-pointer border-y-2 border-gray-500 hover:bg-gray-600 hover:text-gray-800 hover:font-bold"
               >
-                <td className=" min-h-3 overflow-x-auto">{index + 1}</td>
-                <td className=" overflow-x-auto">{debt.itemName}</td>
-                <td className=" overflow-x-auto">{debt.number}</td>
-                <td className=" overflow-x-auto">{debt.unit}</td>
-                <td className=" overflow-x-auto">{debt.part}</td>
-                <td className=" overflow-x-auto">{debt.itemPrice}</td>
-                <td className=" overflow-x-auto">{debt.byWhom}</td>
-                <td className=" overflow-x-auto">{debt.date}</td>
-                <td className=" overflow-x-auto">
-                  {debt.discount ? debt.discount : <h1>-</h1>}
-                </td>
+                <td className=" h-3 min-w-5">{index + 1}</td>
+                <td>{debt.itemName}</td>
+                <td>{debt.number}</td>
+                <td>{debt.unit}</td>
+                <td>{debt.part}</td>
+                <td>{debt.itemPrice}</td>
+                <td>{debt.byWhom}</td>
+                <td>{debt.date}</td>
+                <td>{debt.discount ? debt.discount : <h1>-</h1>}</td>
                 <td className=" overflow-x-auto">{debt.itemPrice}0</td>
               </tr>
             ))}
