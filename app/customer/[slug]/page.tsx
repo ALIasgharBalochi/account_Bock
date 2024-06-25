@@ -9,6 +9,7 @@ import AddDebtButton from "../AddDebtButton";
 import Modal from "../Modal";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
+import SpeedDial from "@/Components/SpeedDial";
 
 export default function customer({ params }: { params: { slug: number } }) {
   const customerId = params.slug;
@@ -67,13 +68,13 @@ export default function customer({ params }: { params: { slug: number } }) {
       ) : (
         <Loading />
       )}
-      <AddDebtButton setOpneModal={setIsOpen} />
       <Modal
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={onSubmit}
         customer={customer}
       />
+      <SpeedDial setOpneModal={setIsOpen} />
     </>
   );
 }
