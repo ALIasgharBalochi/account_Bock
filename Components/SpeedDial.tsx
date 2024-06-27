@@ -1,14 +1,13 @@
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Add } from "@mui/icons-material";
 import { useState } from "react";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
-export default function SpeedDial({
-  setOpneModal,
-}: {
+type Props = {
   setOpneModal: Dispatch<SetStateAction<boolean>>;
-}) {
+  setIsOpenPayModal: any;
+};
+const SpeedDial: React.FC<Props> = ({ setOpneModal, setIsOpenPayModal }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="fixed bottom-4 right-4 flex flex-col items-center space-y-2">
       {isOpen && (
@@ -19,7 +18,10 @@ export default function SpeedDial({
           >
             <Add />
           </button>
-          <button className=" bg-blue-400 text-white hover:text-gray-800 p-2 rounded-full shadow-lg hover:bg-gray-400 transition duration-300">
+          <button
+            onClick={() => setIsOpenPayModal(true)}
+            className=" bg-blue-400 text-white hover:text-gray-800 p-2 rounded-full shadow-lg hover:bg-gray-400 transition duration-300"
+          >
             <CreditCardIcon />
           </button>
         </div>
@@ -32,4 +34,6 @@ export default function SpeedDial({
       </button>
     </div>
   );
-}
+};
+
+export default SpeedDial;

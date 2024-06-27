@@ -10,6 +10,7 @@ import Modal from "../Modal";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 import SpeedDial from "@/Components/SpeedDial";
+import PayModal from "@/Components/PayModal";
 
 export default function customer({ params }: { params: { slug: number } }) {
   const customerId = params.slug;
@@ -19,7 +20,7 @@ export default function customer({ params }: { params: { slug: number } }) {
 
   //  open Modal
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
+  const [isOpenPayModal, setIsOpenPayModal] = useState<boolean>(false);
   const { data, isLoading, error } = useFetchCustomerById(customerId);
   const { data: debts, isLoading: debtsLoadng } = useFetchDebts();
 
@@ -74,7 +75,11 @@ export default function customer({ params }: { params: { slug: number } }) {
         onSubmit={onSubmit}
         customer={customer}
       />
-      <SpeedDial setOpneModal={setIsOpen} />
+      <SpeedDial
+        setOpneModal={setIsOpen}
+        setIsOpenPayModal={setIsOpenPayModal}
+      />
+      <PayModal setIsOpenPayModal={setIsOpenPayModal} isOpen={isOpenPayModal} />
     </>
   );
 }
