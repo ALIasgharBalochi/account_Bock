@@ -21,6 +21,7 @@ export default function customer({ params }: { params: { slug: number } }) {
   //  open Modal
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenPayModal, setIsOpenPayModal] = useState<boolean>(false);
+
   const { data, isLoading, error } = useFetchCustomerById(customerId);
   const { data: debts, isLoading: debtsLoadng } = useFetchDebts();
 
@@ -79,7 +80,11 @@ export default function customer({ params }: { params: { slug: number } }) {
         setOpneModal={setIsOpen}
         setIsOpenPayModal={setIsOpenPayModal}
       />
-      <PayModal setIsOpenPayModal={setIsOpenPayModal} isOpen={isOpenPayModal} />
+      <PayModal
+        setIsOpenPayModal={setIsOpenPayModal}
+        isOpen={isOpenPayModal}
+        customerId={customerId}
+      />
     </>
   );
 }
