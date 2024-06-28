@@ -1,11 +1,33 @@
 "use client";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useQuery, useMutation } from "react-query";
+import { createPayment } from "@/dataFetching/fetchPaymentData";
 type Props = {
   isOpen: boolean;
   setIsOpenPayModal: Dispatch<SetStateAction<boolean>>;
+  customerId: number;
 };
-const PayModal: React.FC<Props> = ({ isOpen, setIsOpenPayModal }) => {
+const PayModal: React.FC<Props> = ({
+  isOpen,
+  setIsOpenPayModal,
+  customerId,
+}) => {
   const [pay, setPay] = useState<number>(0);
+
+  const mutatino = useMutation(createPayment, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        console.log("Error crating payment: ", error.message);
+      }
+    },
+  });
+  const handleSubmit = () => {
+    mutatino.mutate({ customerId, amount: pay });
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -23,7 +45,7 @@ const PayModal: React.FC<Props> = ({ isOpen, setIsOpenPayModal }) => {
         </span>
         <div className="inline-block align-bottom bg-slate-800 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
           <div className=" text-black py-5 flex flex-col items-center">
-            <form dir="rtl">
+            <form dir="rtl" onSubmit={handleSubmit}>
               <div className=" w-full text-start">
                 <label className=" text-white">مبلغ پرداختی به تومان:</label>
               </div>
