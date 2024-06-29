@@ -25,7 +25,7 @@ const PayModal: React.FC<Props> = ({
     },
   });
   const handleSubmit = () => {
-    mutatino.mutate({ customerId, amount: pay });
+    mutatino.mutate({ customer: customerId, amount: pay });
   };
 
   if (!isOpen) {

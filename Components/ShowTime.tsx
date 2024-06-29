@@ -1,6 +1,6 @@
 import { parseISO, formatDistanceToNow } from "date-fns-jalali";
 type Props = {
-  timestamp: string;
+  timestamp: string | undefined;
 };
 const ShowTime: React.FC<Props> = ({ timestamp }) => {
   let timeAgo = "";
