@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query';
 import { useMutation, useQueryClient } from 'react-query';
+import { Pyment } from '@/app/customer/CustomerComponent/CustomerHeader/AccountInformatino/AccountInformation';
 // create payment
-export const createPayment = async (payment: { customerId: number; amount: number }) => {
-    const response = await fetch('http://localhost:9000/payments', {
+export const createPayment = async (payment: { customer: number; amount: number }) => {
+    const response = await fetch('http://localhost:9000/pyments', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -14,21 +15,15 @@ export const createPayment = async (payment: { customerId: number; amount: numbe
     }
     return response.json();
 };
-// const queryClient = useQueryClient();
-//     return useMutation(createPayment, {
-//         onSuccess: () => {
-//             queryClient.invalidateQueries('latestPayment');
-//         },
-//     });
-// };
 
 // get payment 
-const fetchLatestPayment = async (customerId: number) => {
-    const response = await fetch(`http://localhost:9000/payments/latest/${customerId}`);
+const fetchLatestPayment = async (customerId: number):Promise<Pyment> => {
+    const response = await fetch(`http://localhost:9000/pyments/latest/${customerId}`);
     if (!response.ok) {
         throw new Error('Failed to fetch latest payment');
     }
-    return response.json();
+    const d = response.json();
+    return d
 };
 
 export const useLatestPayment = (customerId: number) => {
