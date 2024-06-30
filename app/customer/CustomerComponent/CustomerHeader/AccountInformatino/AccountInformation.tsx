@@ -17,12 +17,12 @@ const AccountInformation: React.FC<Props> = ({ customer }) => {
     <div className=" flex justify-start">
       <div className=" text-end">
         {isLoading && data == undefined ? (
-          <p>تاریخ و مبلغ اخرین پرداختی: 0$ 00:00:00</p>
+          <p> پرداختی: 0$ 00:00:00</p>
         ) : (
-          <p>
-            {data?.amount}$ <ShowTime timestamp={data?.date} />
-            :date and lest payment{" "}
-          </p>
+          <div className=" flex">
+            <p>${data?.amount}</p> &nbsp; <ShowTime timestamp={data?.date} />{" "}
+            <p>: پرداختی </p>
+          </div>
         )}
         <p> {customer.totalDebt}:مجموع کل حساب</p>
       </div>
