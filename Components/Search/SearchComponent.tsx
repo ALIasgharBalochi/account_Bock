@@ -1,6 +1,6 @@
 import { Search } from "@mui/icons-material";
 type Props = {
-  searched: (event: any) => void;
+  searched: any;
   query: { text: string };
 };
 const SearchComponent: React.FC<Props> = ({ searched, query }) => {

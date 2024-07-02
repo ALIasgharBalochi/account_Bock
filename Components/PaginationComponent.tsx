@@ -5,10 +5,6 @@ import { useFetchCustomers } from "@/dataFetching/fetchCustomersData";
 import Body from "./Body";
 import { Customer } from "@/store/store";
 
-type MyData = {
-  isLoading: boolean;
-  Customers: Customer[];
-};
 const PaginationComponent = ({
   CustomerPerPage,
 }: {
