@@ -1,23 +1,23 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import ReactPaginate from "react-paginate";
-import { useFetchCustomers } from "@/dataFetching/fetchCustomersData";
-import Body from "./Body";
+import CustomerComponent from "./CustomerComponents/CustomerComponent";
 import { Customer } from "@/store/store";
 
 const PaginationComponent = ({
   CustomerPerPage,
+  Customers,
 }: {
   CustomerPerPage: number;
+  Customers: Customer[];
 }) => {
   const [CustomersPaginated, setCustomerPagenated] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
   const [CustomerOffset, setCustomerOffset] = useState(0);
 
-  const { data, isLoading, error } = useFetchCustomers();
-  const customers: Customer[] = data
-    ?.slice()
-    .sort((a: Customer, b: Customer) => b.date?.localeCompare(a.date));
+  const customers: Customer[] = Customers?.slice().sort(
+    (a: Customer, b: Customer) => b.date?.localeCompare(a.date)
+  );
 
   const endOffset = CustomerOffset + CustomerPerPage;
 
@@ -42,11 +42,11 @@ const PaginationComponent = ({
   useEffect(() => {
     setCustomerPagenated(customers);
     setLoading(false);
-  }, [isLoading, data]);
+  }, [Customers]);
 
   return (
     <>
-      <Body Customers={currentBlogs} loading={loading} />
+      <CustomerComponent Customers={currentBlogs} loading={loading} />
       <ReactPaginate
         containerClassName="flex justify-center items-center mt-[7rem] mb-4"
         pageClassName="block border border-solid border-liteGray w-10 h-10 flex items-center justify-center rounded-full mr-2 text-slate-800"
