@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
-import { createCustomerFunc } from "@/dataFetching/createCustomer";
+import { createCustomerFunc } from "@/dataFetching/fetchCustomersData";
 import { toast } from "react-toastify";
 export default function createCustomer() {
   const router = useRouter();
