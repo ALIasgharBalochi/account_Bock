@@ -1,4 +1,4 @@
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 type Props = {
   data: Customer;
 };

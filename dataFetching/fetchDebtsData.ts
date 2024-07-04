@@ -1,4 +1,4 @@
-import { Debt } from "@/store/store"
+import { Debt } from "@/types"
 import { useQuery } from "react-query"
 
 

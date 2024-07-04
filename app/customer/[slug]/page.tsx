@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useFetchCustomerById } from "@/dataFetching/fetchCustomersData";
 import Loading from "@/app/loading";
-import { Customer, Debt } from "@/store/store";
+import { Customer, Debt } from "@/types";
 import CustomerContainerPage from "../CustomerComponent/CustomerContainerPage";
 import { createDebt, useFetchDebts } from "@/dataFetching/fetchDebtsData";
 import AddDebtButton from "../AddDebtButton";

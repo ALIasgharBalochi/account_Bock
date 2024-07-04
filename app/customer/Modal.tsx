@@ -1,4 +1,4 @@
-import { Debt, Customer } from "@/store/store";
+import { Debt, Customer } from "@/types";
 import React, { useState } from "react";
 
 interface ModalProps {

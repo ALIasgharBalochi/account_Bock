@@ -1,4 +1,4 @@
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 import avatar from "@/public/avatar.png";
 import Image from "next/image";
 

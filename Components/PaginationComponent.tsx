@@ -2,7 +2,7 @@
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import ReactPaginate from "react-paginate";
 import CustomerComponent from "./CustomerComponents/CustomerComponent";
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 
 const PaginationComponent = ({
   CustomerPerPage,

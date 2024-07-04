@@ -1,5 +1,5 @@
 "use client";
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 import PaginationComponent from "./PaginationComponent";
 import NotFound from "@/app/not-found";
 type Props = {

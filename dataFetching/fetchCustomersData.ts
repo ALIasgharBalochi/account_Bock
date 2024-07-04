@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { Customer } from '@/store/store';
+import { Customer } from '@/types';
 const URL:string = 'http://localhost:9000'
 
 // getAll customer 

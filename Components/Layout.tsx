@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Body from "./Body";
 import { useFetchCustomers } from "@/dataFetching/fetchCustomersData";
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 import SearchComponent from "./Search/SearchComponent";
 import _ from "lodash";
 const Layout: React.FC = () => {

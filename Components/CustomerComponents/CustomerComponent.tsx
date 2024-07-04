@@ -1,4 +1,4 @@
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 import CustomerCardContainer from "./CustomerCard/CustomerCardContiner";
 import Loading from "@/app/loading";
 type Props = {

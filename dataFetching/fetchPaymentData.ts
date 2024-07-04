@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query';
-import { useMutation, useQueryClient } from 'react-query';
 import { Pyment } from '@/app/customer/CustomerComponent/CustomerHeader/AccountInformatino/AccountInformation';
 // create payment
 export const createPayment = async (payment: { customer: number; amount: number }) => {

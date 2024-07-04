@@ -1,4 +1,4 @@
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 import { deleteCustomer } from "@/dataFetching/fetchCustomersData";
 import { useMutation, useQueryClient } from "react-query";
 import useStore from "@/store/store";

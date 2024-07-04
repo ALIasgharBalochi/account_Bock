@@ -1,5 +1,5 @@
 "use client";
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 import CustomerCardImg from "./CustomerCardImg";
 import CustomerCardDetails from "./CustomerCardDetails";
 import CustomerCardAction from "./CustomerCardAction";

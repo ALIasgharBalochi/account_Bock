@@ -1,4 +1,4 @@
-import { Debt } from "@/store/store";
+import { Debt } from "@/types";
 import { useMutation, useQueryClient } from "react-query";
 import { deleteDebt } from "@/dataFetching/fetchDebtsData";
 import { toast } from "react-toastify";
