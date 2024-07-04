@@ -9,7 +9,7 @@ type Props = {
 const Body: React.FC<Props> = ({ Customers, query, searchedCustomers }) => {
   return (
     <>
-      <div className=" w-full h-screen pt-12">
+      <div className=" w-full h-auto pt-12">
         <div className=" w-full">
           {query.text.length > 0 ? (
             <PaginationComponent
