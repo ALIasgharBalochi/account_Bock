@@ -1,3 +1,4 @@
+"use client";
 import React, { Dispatch, SetStateAction } from "react";
 import { Add } from "@mui/icons-material";
 import { useState } from "react";

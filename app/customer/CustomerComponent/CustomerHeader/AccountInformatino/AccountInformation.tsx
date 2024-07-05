@@ -1,4 +1,4 @@
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 import { useLatestPayment } from "@/dataFetching/fetchPaymentData";
 import ShowTime from "@/Components/ShowTime";
 type Props = {

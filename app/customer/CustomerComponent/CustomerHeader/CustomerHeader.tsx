@@ -1,4 +1,4 @@
-import { Customer } from "@/store/store";
+import { Customer } from "@/types";
 import AccountInformation from "./AccountInformatino/AccountInformation";
 import PersonalityInformation from "./PersonalityInformation/PersonalityInformation";
 

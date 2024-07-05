@@ -3,14 +3,11 @@ import { useEffect, useState } from "react";
 import { useFetchCustomerById } from "@/dataFetching/fetchCustomersData";
 import Loading from "@/app/loading";
 import { Customer, Debt } from "@/types";
-import CustomerContainerPage from "../CustomerComponent/CustomerContainerPage";
 import { createDebt, useFetchDebts } from "@/dataFetching/fetchDebtsData";
-import AddDebtButton from "../AddDebtButton";
 import Modal from "../Modal";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
-import SpeedDial from "@/Components/SpeedDial";
-import PayModal from "@/Components/PayModal";
+import { PayModal, SpeedDial, CustomerContainerPage } from "@/Components";
 
 export default function customer({ params }: { params: { slug: number } }) {
   const customerId = params.slug;

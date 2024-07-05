@@ -1,6 +1,6 @@
 "use client";
 import { Customer } from "@/types";
-import PaginationComponent from "./PaginationComponent";
+import { PaginationComponent } from "@/Components";
 import NotFound from "@/app/not-found";
 type Props = {
   Customers: Customer[];

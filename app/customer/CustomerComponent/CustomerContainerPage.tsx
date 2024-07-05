@@ -1,4 +1,5 @@
-import { Customer, Debt } from "@/store/store";
+"use client";
+import { Customer, Debt } from "@/types";
 import CustomerHeader from "./CustomerHeader/CustomerHeader";
 import CustomerBody from "./CustomerBody/CustomerBody";
 

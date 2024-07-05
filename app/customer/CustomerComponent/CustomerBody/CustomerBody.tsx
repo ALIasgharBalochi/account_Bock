@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DeleteDebtModal from "../../DeletCustomerModal";
 import DebtsTable from "./DebtsTable/DebtsTable";
-import { Debt } from "@/store/store";
+import { Debt } from "@/types";
 type Props = {
   Debts: Debt[];
 };

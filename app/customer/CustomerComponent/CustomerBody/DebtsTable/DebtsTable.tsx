@@ -1,7 +1,7 @@
 import NotFound from "@/app/not-found";
-import { Debt } from "@/store/store";
+import { Debt } from "@/types";
 import { Dispatch, SetStateAction } from "react";
-import ShowTime from "@/Components/ShowTime";
+import { ShowTime } from "@/Components";
 type Props = {
   Debts: Debt[];
   setIsOpen: Dispatch<SetStateAction<boolean>>;
