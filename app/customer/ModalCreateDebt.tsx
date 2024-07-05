@@ -8,7 +8,7 @@ interface ModalProps {
   customer: Customer | null;
 }
 
-const Modal: React.FC<ModalProps> = ({
+const ModalCreateDebt: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
@@ -135,4 +135,4 @@ const Modal: React.FC<ModalProps> = ({
   );
 };
 
-export default Modal;
+export default ModalCreateDebt;

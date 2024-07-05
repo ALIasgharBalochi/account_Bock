@@ -4,10 +4,15 @@ import { useFetchCustomerById } from "@/dataFetching/fetchCustomersData";
 import Loading from "@/app/loading";
 import { Customer, Debt } from "@/types";
 import { createDebt, useFetchDebts } from "@/dataFetching/fetchDebtsData";
-import Modal from "../Modal";
+import ModalCreateDebt from "../ModalCreateDebt";
+import Modal from "@/Components/Modal";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
-import { PayModal, SpeedDial, CustomerContainerPage } from "@/Components";
+import {
+  PaymentComponent,
+  SpeedDial,
+  CustomerContainerPage,
+} from "@/Components";
 
 export default function customer({ params }: { params: { slug: number } }) {
   const customerId = params.slug;
@@ -67,7 +72,7 @@ export default function customer({ params }: { params: { slug: number } }) {
       ) : (
         <Loading />
       )}
-      <Modal
+      <ModalCreateDebt
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={onSubmit}
@@ -77,11 +82,12 @@ export default function customer({ params }: { params: { slug: number } }) {
         setOpneModal={setIsOpen}
         setIsOpenPayModal={setIsOpenPayModal}
       />
-      <PayModal
-        setIsOpenPayModal={setIsOpenPayModal}
-        isOpen={isOpenPayModal}
-        customerId={customerId}
-      />
+      <Modal openModal={isOpenPayModal}>
+        <PaymentComponent
+          setIsOpenPayModal={setIsOpenPayModal}
+          customerId={customerId}
+        />
+      </Modal>
     </>
   );
 }
