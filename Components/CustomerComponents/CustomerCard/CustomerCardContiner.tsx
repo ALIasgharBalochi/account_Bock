@@ -6,6 +6,7 @@ import CustomerCardAction from "./CustomerCardAction";
 import DeleteCustomer from "./DeleteCustomer";
 import { useState } from "react";
 import DeleteCustomerModal from "../DeletCustomerModal";
+import Modal from "@/Components/Modal";
 type Props = {
   data: Customer;
 };
@@ -25,11 +26,9 @@ const CustomerCardContainer: React.FC<Props> = ({ data }) => {
         <CustomerCardDetails data={data} />
         <CustomerCardAction customerId={data._id} />
       </div>
-      <DeleteCustomerModal
-        customer={data}
-        isOpen={isOpen}
-        onClose={onCloseModal}
-      />
+      <Modal openModal={isOpen}>
+        <DeleteCustomerModal customer={data} onClose={onCloseModal} />
+      </Modal>
     </div>
   );
 };
