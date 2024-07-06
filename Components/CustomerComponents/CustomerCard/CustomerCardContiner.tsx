@@ -5,7 +5,7 @@ import CustomerCardDetails from "./CustomerCardDetails";
 import CustomerCardAction from "./CustomerCardAction";
 import DeleteCustomer from "./DeleteCustomer";
 import { useState } from "react";
-import DeleteCustomerModal from "../DeletCustomerModal";
+import DeleteCustomerModal from "../DeletCustomerComponent";
 import Modal from "@/Components/Modal";
 type Props = {
   data: Customer;
