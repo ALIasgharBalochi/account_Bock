@@ -4,7 +4,7 @@ import { useFetchCustomerById } from "@/dataFetching/fetchCustomersData";
 import Loading from "@/app/loading";
 import { Customer, Debt } from "@/types";
 import { createDebt, useFetchDebts } from "@/dataFetching/fetchDebtsData";
-import ModalCreateDebt from "../ModalCreateDebt";
+import CreateDebtComponent from "../CreateDebtComponent";
 import Modal from "@/Components/Modal";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
@@ -72,12 +72,13 @@ export default function customer({ params }: { params: { slug: number } }) {
       ) : (
         <Loading />
       )}
-      <ModalCreateDebt
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={onSubmit}
-        customer={customer}
-      />
+      <Modal openModal={isOpen}>
+        <CreateDebtComponent
+          onClose={onClose}
+          onSubmit={onSubmit}
+          customer={customer}
+        />
+      </Modal>
       <SpeedDial
         setOpneModal={setIsOpen}
         setIsOpenPayModal={setIsOpenPayModal}
